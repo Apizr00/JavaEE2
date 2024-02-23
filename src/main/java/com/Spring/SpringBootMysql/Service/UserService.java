@@ -1,21 +1,20 @@
 package com.Spring.SpringBootMysql.Service;
 
-
 import com.Spring.SpringBootMysql.model.User;
-import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
 
 @Service()
 public interface UserService {
 
-    User findBymemberID(Long memberID);
+    Iterable<User> getAllUsers();
 
-    User findByemailId(String emailId);
+    Optional<User> getUserById(Long id);
 
-    User save(User user);
+    User addUser(User user);
 
-    User addMember(User user);
+    void deleteUser(Long id);
 
-    List<User> findAll();
 }

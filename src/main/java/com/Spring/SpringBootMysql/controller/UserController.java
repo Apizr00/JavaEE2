@@ -2,37 +2,39 @@ package com.Spring.SpringBootMysql.controller;
 
 import com.Spring.SpringBootMysql.Service.UserService;
 import com.Spring.SpringBootMysql.model.User;
-import com.Spring.SpringBootMysql.repository.UserRepo;
+
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping("/")
 @Controller
 public class UserController {
-    @Autowired
-    UserRepo userRepo;
+
     @Autowired
     UserService userService;
 
     @GetMapping("/users")
-    public List<User> getAllUser() {
-        return userRepo.findAll();
+    public Iterable<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
-    @PostMapping("/create")
-    public User createMember(@RequestBody User user) {
-        user.setCreatedAt(new Date());
-        user.setUpdatedAt(new Date());
-        return userRepo.save(user);
+    @GetMapping("/users/{id}")
+    public Optional<User> getUserById(@PathVariable Long id) {
+        return userService.getUserById(id);
     }
 
-    @PostMapping("/addMember")
-    public User addMember(@RequestBody User user) {
-        return userService.addMember(user);
+    @PostMapping("/add_user")
+    public User addUser(@RequestBody User user) {
+        return userService.addUser(user);
     }
+
+    @DeleteMapping("/delete_user")
+    public void deleteUser(@RequestParam Long id) {
+        userService.deleteUser(id);
+    }
+
 }
