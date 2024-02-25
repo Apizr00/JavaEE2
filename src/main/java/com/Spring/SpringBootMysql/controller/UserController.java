@@ -2,9 +2,7 @@ package com.Spring.SpringBootMysql.controller;
 
 import com.Spring.SpringBootMysql.Service.UserService;
 import com.Spring.SpringBootMysql.model.User;
-
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +28,11 @@ public class UserController {
     @PostMapping("/add_user")
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+    @PutMapping("/update_user/{id}")
+    public void updateUser(@PathVariable Long id, @RequestBody User updatedUser) {
+        userService.updateUser(id, updatedUser);
     }
 
     @DeleteMapping("/delete_user")

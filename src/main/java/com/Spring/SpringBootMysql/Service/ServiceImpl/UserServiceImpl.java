@@ -3,7 +3,6 @@ package com.Spring.SpringBootMysql.Service.ServiceImpl;
 import com.Spring.SpringBootMysql.Service.UserService;
 import com.Spring.SpringBootMysql.model.User;
 import com.Spring.SpringBootMysql.repository.UserRepo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,13 +27,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User addUser(User user) {
-
         return userRepo.save(user);
     }
 
     @Override
-    public void deleteUser(Long id) {
+    public void updateUser(Long id, User updatedUser) {
+        Optional<User> userToUpdateOptional = userRepo.findById(id);
 
+        if (userToUpdateOptional.isPresent()) {
+            User userToUpdate = userToUpdateOptional.get();
+            userToUpdate.setUsername(updatedUser.getUsername());
+            userToUpdate.setEmail(updatedUser.getEmail());
+            userRepo.save(userToUpdate);
+        }
+    }
+
+    @Override
+    public void deleteUser(Long id) {
         Optional<User> userToDeleteOptional = userRepo.findById(id);
 
         if (userToDeleteOptional.isPresent()) {
