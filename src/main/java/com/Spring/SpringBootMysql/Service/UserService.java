@@ -1,9 +1,7 @@
 package com.Spring.SpringBootMysql.Service;
 
 import com.Spring.SpringBootMysql.model.User;
-
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
 
 @Service()
