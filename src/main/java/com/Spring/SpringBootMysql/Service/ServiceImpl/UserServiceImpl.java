@@ -32,6 +32,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, User updatedUser) {
+
         Optional<User> userToUpdateOptional = userRepo.findById(id);
 
         if (userToUpdateOptional.isPresent()) {
@@ -44,6 +45,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(Long id) {
+
         Optional<User> userToDeleteOptional = userRepo.findById(id);
 
         if (userToDeleteOptional.isPresent()) {
