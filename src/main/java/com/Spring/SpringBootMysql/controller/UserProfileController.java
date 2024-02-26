@@ -27,6 +27,8 @@ public class UserProfileController {
 
     @PostMapping("/add_userprofile")
     public UserProfiles addUser(@RequestBody UserProfiles userProfile) {
+        if (userProfile == null)
+            throw new NullPointerException();
         return userProfilesService.addUser(userProfile);
     }
 

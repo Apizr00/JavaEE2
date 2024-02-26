@@ -27,6 +27,8 @@ public class UserController {
 
     @PostMapping("/add_user")
     public User addUser(@RequestBody User user) {
+        if (user == null)
+            throw new NullPointerException();
         return userService.addUser(user);
     }
 

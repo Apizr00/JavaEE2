@@ -25,6 +25,8 @@ public class PermissionController {
 
     @PostMapping("/add")
     public Permission addPermission(@RequestBody Permission permission) {
+        if (permission == null)
+            throw new NullPointerException();
         return permissionService.addPermission(permission);
     }
 
